@@ -155,6 +155,31 @@ export const ModelInformation = () => {
         </div>
       </div>
 
+      {/* Verified Model Classes from Checkpoint */}
+      <div className="p-4 rounded-xl enterprise-card space-y-2.5">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-semibold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            Verified Model Detection Classes (best.pt)
+          </span>
+          <span className="text-[10px] font-mono text-slate-400">Strictly 3 Classes</span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
+          <div className="p-2.5 rounded-lg bg-[#0E1422] border border-slate-800 flex items-center justify-between">
+            <span className="text-slate-200">0: FireExtinguisher</span>
+            <span className="text-red-400 text-[10px]">Fire Protection</span>
+          </div>
+          <div className="p-2.5 rounded-lg bg-[#0E1422] border border-slate-800 flex items-center justify-between">
+            <span className="text-slate-200">1: ToolBox</span>
+            <span className="text-blue-400 text-[10px]">Equipment</span>
+          </div>
+          <div className="p-2.5 rounded-lg bg-[#0E1422] border border-slate-800 flex items-center justify-between">
+            <span className="text-slate-200">2: OxygenTank</span>
+            <span className="text-cyan-400 text-[10px]">Compressed Gas</span>
+          </div>
+        </div>
+      </div>
+
       {/* Verified Architecture Pipeline */}
       <div className="p-5 rounded-xl enterprise-card space-y-3">
         <h3 className="text-xs font-semibold text-slate-200 uppercase tracking-wider flex items-center gap-2">

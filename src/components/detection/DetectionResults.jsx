@@ -60,7 +60,7 @@ export const DetectionResults = ({ result }) => {
           <div className="flex items-center gap-1.5">
             <ShieldAlert className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span className="text-xs font-bold text-slate-100">
-              7 Standards
+              3 Classes
             </span>
           </div>
         </div>
@@ -73,7 +73,7 @@ export const DetectionResults = ({ result }) => {
           <span>Ultralytics Direct Plotting Pipeline</span>
         </div>
         <p className="text-slate-400 leading-relaxed text-[10px]">
-          The Space endpoint (<code className="text-slate-300 font-mono">aman9832/object-detection</code>) executes YOLO bounding box plotting directly onto the image raster. FireGuard AI displays this real annotated layer faithfully without generating synthetic coordinate arrays.
+          The Space endpoint (<code className="text-slate-300 font-mono">aman9832/object-detection</code>) executes YOLO bounding box plotting directly onto the image raster for Oxygen Tank, Fire Extinguisher, and Toolbox. FireGuard AI displays this real annotated layer faithfully without generating synthetic coordinate arrays.
         </p>
       </div>
 
@@ -89,7 +89,7 @@ export const DetectionResults = ({ result }) => {
             </p>
           </div>
           <Badge variant="default" size="sm">
-            7 Standards
+            3 Classes
           </Badge>
         </div>
 

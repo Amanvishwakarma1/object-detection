@@ -52,7 +52,7 @@ export const DetectionChart = ({ records = [] }) => {
           </p>
         </div>
         <span className="text-[10px] font-mono text-slate-300 bg-[#162033] px-2 py-0.5 rounded border border-slate-700/60">
-          7 Categories
+          3 Verified Classes
         </span>
       </div>
 
@@ -66,8 +66,8 @@ export const DetectionChart = ({ records = [] }) => {
               tickLine={false}
               axisLine={{ stroke: '#1E293B' }}
               interval={0}
-              angle={-20}
-              textAnchor="end"
+              angle={0}
+              textAnchor="middle"
             />
             <YAxis
               stroke="#64748b"
@@ -86,11 +86,11 @@ export const DetectionChart = ({ records = [] }) => {
         </ResponsiveContainer>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-slate-800/80 text-[10px]">
-        {DETECTION_CLASSES.slice(0, 4).map((c) => (
+      <div className="grid grid-cols-3 gap-2 pt-3 border-t border-slate-800/80 text-[10px]">
+        {DETECTION_CLASSES.map((c) => (
           <div key={c.id} className="flex items-center gap-1.5 text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: c.color }} />
-            <span className="truncate">{c.displayName.split(' ')[0]}</span>
+            <span className="truncate">{c.displayName}</span>
           </div>
         ))}
       </div>

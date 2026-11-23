@@ -1,11 +1,7 @@
 import React from 'react';
 import {
   Flame,
-  Droplets,
-  Disc,
-  BellRing,
-  Radio,
-  HardHat,
+  Cylinder,
   Briefcase,
   CheckCircle2,
   FileText,
@@ -16,11 +12,7 @@ import { Badge } from '../common/Badge';
 
 const ICON_MAP = {
   FlameKindling: Flame,
-  Droplets: Droplets,
-  Disc: Disc,
-  BellRing: BellRing,
-  Radio: Radio,
-  HardHat: HardHat,
+  Cylinder: Cylinder,
   Briefcase: Briefcase
 };
 

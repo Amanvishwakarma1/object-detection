@@ -91,8 +91,8 @@ export const Overview = () => {
 
         <StatCard
           title="Monitored Equipment"
-          value="7 Classes"
-          subtitle="Fire Protection, PPE & Tools"
+          value="3 Classes"
+          subtitle="Extinguisher, Oxygen Tank, Toolbox"
           icon={ShieldAlert}
           color="green"
         />

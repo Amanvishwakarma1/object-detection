@@ -3,11 +3,7 @@ import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
 import {
   Flame,
-  Droplets,
-  Disc,
-  BellRing,
-  Radio,
-  HardHat,
+  Cylinder,
   Briefcase,
   CheckCircle2,
   AlertTriangle,
@@ -20,11 +16,7 @@ import { Badge } from '../common/Badge';
 
 const ICON_MAP = {
   FlameKindling: Flame,
-  Droplets: Droplets,
-  Disc: Disc,
-  BellRing: BellRing,
-  Radio: Radio,
-  HardHat: HardHat,
+  Cylinder: Cylinder,
   Briefcase: Briefcase
 };
 

@@ -36,19 +36,15 @@ The application integrates with an existing trained Ultralytics YOLO model hoste
 
 ## 🎯 Supported Detection Classes
 
-FireGuard AI monitors strictly verified equipment categories:
+FireGuard AI is strictly verified against the underlying YOLO model weights (`best.pt` in `aman9832/object-detection`):
 
-| Class Name | Category | Primary Standard | Typical Locations |
+| Model Class | Category | Regulatory Standard | Typical Locations |
 | :--- | :--- | :--- | :--- |
-| **Fire Extinguisher** | Fire Protection | NFPA 10 / OSHA 1910.157 | Corridors, electrical rooms, kitchens, exits |
-| **Fire Hydrant** | Fire Protection | NFPA 25 / AWWA C502 | Perimeter roadways, logistics access, parking |
-| **Fire Hose & Reel** | Fire Protection | NFPA 14 / NFPA 1962 | Stairwell landings, industrial workshops |
-| **Fire Alarm Pull Station** | Fire Protection | NFPA 72 / IBC 907 | Egress doors, main reception, lobby exits |
-| **Smoke Detector** | Fire Protection | NFPA 72 / UL 268 | Ceilings of offices, risers, server rooms |
-| **Safety Helmet (Hard Hat)** | Workplace Safety | ANSI/ISEA Z89.1 / EN 397 | Construction bays, production floors |
-| **Toolbox / Equipment Kit** | Workplace Equipment | ISO 45001 / 5S Good Housekeeping | Maintenance bays, assembly stations |
+| **Fire Extinguisher** (`FireExtinguisher`) | Fire Protection | NFPA 10 / OSHA 1910.157 | Corridors, electrical rooms, kitchens, exits |
+| **Oxygen Tank** (`OxygenTank`) | Compressed Gas & Safety | OSHA 1910.101 / CGA P-1 / NFPA 55 | Welding bays, fabrication shops, medical gas stores |
+| **Toolbox** (`ToolBox`) | Workplace Equipment | ISO 45001 / 5S Good Housekeeping | Maintenance staging, mechanical repair bays |
 
-*Note: FireGuard AI does not claim or simulate detection of open flames, toxic gas leaks, or smoke plumes.*
+*Note: FireGuard AI does not claim or simulate detection of open flames, toxic gas leaks, or smoke clouds.*
 
 ---
 

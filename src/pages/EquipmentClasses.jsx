@@ -50,7 +50,7 @@ export const EquipmentClasses = () => {
         <div className="flex items-center gap-2 text-xs">
           <span className="px-2 py-0.5 rounded bg-[#141C2E] border border-slate-700/80 text-emerald-400 font-mono text-[11px] flex items-center gap-1">
             <CheckCircle2 className="w-3 h-3" />
-            7 Standards Monitored
+            3 Verified Categories
           </span>
         </div>
       </div>
@@ -62,7 +62,7 @@ export const EquipmentClasses = () => {
           <span>Operational Safety Protocol</span>
         </div>
         <p className="text-slate-400 text-[11px] leading-relaxed">
-          FireGuard AI detects visual equipment presence and orientation. Automated detection does not certify cylinder hydrostatic tests, chemical charge pressure, or statutory NFPA/OSHA inspection compliance.
+          FireGuard AI detects visual equipment presence for Oxygen Tanks, Fire Extinguishers, and Toolboxes. Automated visual inference does not certify cylinder hydrostatic tests, chemical charge pressure, or statutory NFPA/OSHA inspection compliance.
         </p>
       </div>
 
@@ -78,7 +78,7 @@ export const EquipmentClasses = () => {
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            All (7)
+            All (3)
           </button>
 
           <button
@@ -90,19 +90,19 @@ export const EquipmentClasses = () => {
             }`}
           >
             <Flame className="w-3 h-3 text-red-400" />
-            <span>Fire Protection (5)</span>
+            <span>Fire Extinguisher</span>
           </button>
 
           <button
-            onClick={() => setSelectedCategory('WORKPLACE_SAFETY')}
+            onClick={() => setSelectedCategory('HAZARDOUS_EQUIPMENT')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
-              selectedCategory === 'WORKPLACE_SAFETY'
+              selectedCategory === 'HAZARDOUS_EQUIPMENT'
                 ? 'bg-[#1E293B] text-white font-semibold'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <HardHat className="w-3 h-3 text-emerald-400" />
-            <span>PPE (1)</span>
+            <span className="w-2 h-2 rounded-full bg-cyan-400" />
+            <span>Oxygen Tank</span>
           </button>
 
           <button
@@ -114,7 +114,7 @@ export const EquipmentClasses = () => {
             }`}
           >
             <Briefcase className="w-3 h-3 text-blue-400" />
-            <span>Equipment (1)</span>
+            <span>Toolbox</span>
           </button>
         </div>
 
