@@ -149,6 +149,27 @@ A pre-configured [`vercel.json`](./vercel.json) is included with universal routi
 
 ---
 
+## 🚀 Deployment to Render (Static Site)
+
+To deploy on [Render](https://render.com) without 404 errors:
+
+1. In Render Dashboard, click **New +** → **Static Site** (do **not** choose Web Service).
+2. Connect your GitHub repository `Amanvishwakarma1/object-detection`.
+3. Set the following required settings:
+   - **Name**: `fireguard-ai`
+   - **Branch**: `main`
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `dist` *(Important: Vite outputs to `dist`, not `build`)*
+4. Under **Redirects / Rewrites**, add the SPA rewrite rule:
+   - **Source**: `/*`
+   - **Destination**: `/index.html`
+   - **Action**: `Rewrite`
+5. Click **Create Static Site**.
+
+*(Note: A pre-configured [`render.yaml`](./render.yaml) is also provided in the repository for auto-configuration via Render Blueprints).*
+
+---
+
 ## 🧩 Iframe Embedding
 
 To embed the FireGuard AI inspection studio into an existing portal, use this responsive embed snippet:
