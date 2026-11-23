@@ -2,23 +2,15 @@ import React, { useState } from 'react';
 import {
   ShieldAlert,
   CheckCircle2,
-  AlertTriangle,
   Info,
   Clock,
   Layers,
-  Search,
-  ExternalLink,
-  Flame,
-  Filter
+  FileText
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
-import { Button } from '../common/Button';
-import { formatDateTime, formatConfidence } from '../../utils/formatUtils';
-import { DETECTION_CLASSES, getClassByName } from '../../data/detectionClasses';
+import { DETECTION_CLASSES } from '../../data/detectionClasses';
 
 export const DetectionResults = ({ result }) => {
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
-
   if (!result) return null;
 
   const {
@@ -26,86 +18,78 @@ export const DetectionResults = ({ result }) => {
     filename,
     processedAt,
     status,
-    processingTimeMs,
-    hasAnnotatedImage,
-    structuredBoundingBoxesAvailable,
-    detections = []
+    processingTimeMs
   } = result;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3.5">
       {/* High-Level Status & KPI Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {/* Status Card */}
-        <div className="p-3.5 rounded-xl bg-[#172033] border border-slate-800">
-          <span className="text-[11px] text-slate-400 block mb-1">Execution Status</span>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+        <div className="p-3 rounded-lg enterprise-card">
+          <span className="text-[10px] text-slate-400 block mb-0.5 uppercase tracking-wider font-mono">Status</span>
           <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span className="text-sm font-bold text-slate-100 capitalize">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            <span className="text-xs font-bold text-slate-100 capitalize">
               {status}
             </span>
           </div>
         </div>
 
-        {/* Inference Latency */}
-        <div className="p-3.5 rounded-xl bg-[#172033] border border-slate-800">
-          <span className="text-[11px] text-slate-400 block mb-1">Inference Latency</span>
+        <div className="p-3 rounded-lg enterprise-card">
+          <span className="text-[10px] text-slate-400 block mb-0.5 uppercase tracking-wider font-mono">Inference Time</span>
           <div className="flex items-center gap-1.5">
-            <Clock className="w-4 h-4 text-orange-400 shrink-0" />
-            <span className="text-sm font-bold text-slate-100 font-mono">
+            <Clock className="w-3.5 h-3.5 text-orange-400 shrink-0" />
+            <span className="text-xs font-bold text-slate-100 font-mono">
               {processingTimeMs ? `${processingTimeMs} ms` : 'N/A'}
             </span>
           </div>
         </div>
 
-        {/* Annotated Output */}
-        <div className="p-3.5 rounded-xl bg-[#172033] border border-slate-800">
-          <span className="text-[11px] text-slate-400 block mb-1">Visual Layer</span>
+        <div className="p-3 rounded-lg enterprise-card">
+          <span className="text-[10px] text-slate-400 block mb-0.5 uppercase tracking-wider font-mono">Visual Output</span>
           <div className="flex items-center gap-1.5">
-            <Layers className="w-4 h-4 text-cyan-400 shrink-0" />
-            <span className="text-sm font-bold text-slate-100">
-              Annotated
+            <Layers className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+            <span className="text-xs font-bold text-slate-100">
+              YOLO Annotated
             </span>
           </div>
         </div>
 
-        {/* Supported Classes */}
-        <div className="p-3.5 rounded-xl bg-[#172033] border border-slate-800">
-          <span className="text-[11px] text-slate-400 block mb-1">Monitored Classes</span>
+        <div className="p-3 rounded-lg enterprise-card">
+          <span className="text-[10px] text-slate-400 block mb-0.5 uppercase tracking-wider font-mono">Class Inventory</span>
           <div className="flex items-center gap-1.5">
-            <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0" />
-            <span className="text-sm font-bold text-slate-100">
-              7 Categories
+            <ShieldAlert className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span className="text-xs font-bold text-slate-100">
+              7 Standards
             </span>
           </div>
         </div>
       </div>
 
       {/* Honest Backend Disclosure Banner */}
-      <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 space-y-2">
-        <div className="flex items-center gap-2 text-orange-400 font-semibold">
-          <Info className="w-4 h-4 shrink-0" />
-          <span>Model Architecture Note: Direct Canvas Rendering</span>
+      <div className="p-3.5 rounded-lg bg-[#0E1422] border border-slate-800 text-xs text-slate-300 space-y-1.5">
+        <div className="flex items-center gap-2 text-slate-300 font-medium text-[11px]">
+          <Info className="w-3.5 h-3.5 text-orange-400 shrink-0" />
+          <span>Ultralytics Direct Plotting Pipeline</span>
         </div>
-        <p className="text-slate-400 leading-relaxed text-[11px]">
-          The Hugging Face Space (<code className="text-slate-300 font-mono">aman9832/object-detection</code>) executes an Ultralytics YOLO model whose endpoint returns an annotated image with predicted bounding boxes and class labels plotted directly onto the image canvas.
-          In accordance with strict technical integrity guidelines, FireGuard AI displays the real annotated image rendered by the model rather than inventing fabricated bounding box coordinates.
+        <p className="text-slate-400 leading-relaxed text-[10px]">
+          The Space endpoint (<code className="text-slate-300 font-mono">aman9832/object-detection</code>) executes YOLO bounding box plotting directly onto the image raster. FireGuard AI displays this real annotated layer faithfully without generating synthetic coordinate arrays.
         </p>
       </div>
 
       {/* Detected Equipment Reference Checklist */}
-      <div className="rounded-xl border border-slate-800 bg-[#172033]/60 p-4 space-y-3">
+      <div className="rounded-xl border border-slate-800 bg-[#0E1422] p-3.5 space-y-2.5">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-              Safety Verification Checklist
+            <h4 className="text-[11px] font-semibold text-slate-200 uppercase tracking-wider">
+              Safety Verification Standards Checklist
             </h4>
-            <p className="text-[11px] text-slate-400">
-              Cross-reference bounding boxes visible in the visual viewer above
+            <p className="text-[10px] text-slate-400">
+              Cross-reference equipment visualized in the inspection viewer above
             </p>
           </div>
-          <Badge variant="orange" size="sm">
-            7 Verified Classes
+          <Badge variant="default" size="sm">
+            7 Standards
           </Badge>
         </div>
 
@@ -113,22 +97,22 @@ export const DetectionResults = ({ result }) => {
           {DETECTION_CLASSES.map((item) => (
             <div
               key={item.id}
-              className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-start gap-2.5"
+              className="p-2 rounded-lg bg-[#141C2E] border border-slate-700/60 flex items-start gap-2"
             >
               <div
-                className="w-2.5 h-2.5 rounded-full shrink-0 mt-1"
+                className="w-2 h-2 rounded-full shrink-0 mt-1"
                 style={{ backgroundColor: item.color }}
               />
               <div className="flex-1 overflow-hidden">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-slate-200 truncate">
+                  <span className="text-[11px] font-medium text-slate-200 truncate">
                     {item.displayName}
                   </span>
-                  <span className="text-[10px] text-slate-400 font-mono">
+                  <span className="text-[9px] text-slate-400 font-mono">
                     {item.standardCode.split('/')[0]}
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5">
+                <p className="text-[9px] text-slate-400 line-clamp-1 mt-0.5">
                   {item.typicalLocations}
                 </p>
               </div>

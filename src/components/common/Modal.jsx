@@ -38,30 +38,30 @@ export const Modal = ({
 
       {/* Modal Dialog */}
       <div 
-        className={`relative w-full ${maxWidth} bg-[#111827] border border-slate-700/80 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden transform transition-all z-10 flex flex-col max-h-[90vh]`}
+        className={`relative w-full ${maxWidth} bg-[#0D121F] border border-slate-700/80 rounded-xl shadow-2xl shadow-black/80 overflow-hidden transform transition-all z-10 flex flex-col max-h-[90vh]`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         {(title || showClose) && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#172033]/80">
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 bg-[#0E1526]">
             <div>
-              {title && <h3 className="text-lg font-semibold text-slate-100">{title}</h3>}
-              {subtitle && <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>}
+              {title && <h3 className="text-sm font-bold text-slate-100">{title}</h3>}
+              {subtitle && <p className="text-[11px] text-slate-400 mt-0.5">{subtitle}</p>}
             </div>
             {showClose && (
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors cursor-pointer"
+                className="p-1 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#141C2E] transition-colors cursor-pointer"
                 aria-label="Close dialog"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
         )}
 
         {/* Body */}
-        <div className="px-6 py-5 overflow-y-auto flex-1">
+        <div className="px-5 py-4 overflow-y-auto flex-1">
           {children}
         </div>
       </div>

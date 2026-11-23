@@ -56,12 +56,12 @@ export const HistoryDetailModal = ({ record, isOpen, onClose, onDelete }) => {
       <div className="space-y-5">
         {/* View Mode Toolbar */}
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
-          <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-lg border border-slate-800">
+          <div className="flex items-center gap-1 bg-[#141C2E] p-0.5 rounded-lg border border-slate-700/80">
             <button
               onClick={() => setViewMode('annotated')}
-              className={`px-3 py-1 rounded text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                 viewMode === 'annotated'
-                  ? 'bg-orange-500 text-white shadow-sm'
+                  ? 'bg-[#EA580C] text-white font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -73,9 +73,9 @@ export const HistoryDetailModal = ({ record, isOpen, onClose, onDelete }) => {
               <>
                 <button
                   onClick={() => setViewMode('original')}
-                  className={`px-3 py-1 rounded text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-3 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                     viewMode === 'original'
-                      ? 'bg-slate-700 text-white'
+                      ? 'bg-[#1C263A] text-white font-semibold'
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -85,9 +85,9 @@ export const HistoryDetailModal = ({ record, isOpen, onClose, onDelete }) => {
 
                 <button
                   onClick={() => setViewMode('side-by-side')}
-                  className={`px-3 py-1 rounded text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-3 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                     viewMode === 'side-by-side'
-                      ? 'bg-slate-700 text-white'
+                      ? 'bg-[#1C263A] text-white font-semibold'
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { UploadCloud, Image as ImageIcon, Sparkles, X, RefreshCw, FileText } from 'lucide-react';
+import { UploadCloud, Image as ImageIcon, Sparkles, X, RefreshCw, FileText, Camera } from 'lucide-react';
 import { Button } from '../common/Button';
 import { formatFileSize } from '../../utils/formatUtils';
 import { SAMPLE_IMAGES } from '../../data/sampleImages';
@@ -49,18 +49,18 @@ export const ImageUploader = ({
   };
 
   return (
-    <div className="space-y-4">
-      {/* Upload Box or Image Preview */}
+    <div className="space-y-3.5">
+      {/* Upload Dropzone or Staged Preview */}
       {!previewUrl ? (
         <div
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`relative border-2 border-dashed rounded-2xl p-8 sm:p-12 text-center transition-all duration-200 cursor-pointer flex flex-col items-center justify-center min-h-[300px] ${
+          className={`relative border border-dashed rounded-xl p-8 sm:p-10 text-center transition-all duration-150 cursor-pointer flex flex-col items-center justify-center min-h-[260px] ${
             isDragOver
-              ? 'border-orange-500 bg-orange-500/10 scale-[0.99]'
-              : 'border-slate-700/80 hover:border-slate-600 bg-[#172033]/50 hover:bg-[#172033]/80'
+              ? 'border-orange-500 bg-orange-500/5'
+              : 'border-slate-700/70 hover:border-slate-500 bg-[#0B101D] hover:bg-[#0E1422]'
           }`}
         >
           <input
@@ -72,32 +72,32 @@ export const ImageUploader = ({
             disabled={disabled}
           />
 
-          <div className="w-16 h-16 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 mb-4 shadow-inner group-hover:scale-110 transition-transform">
-            <UploadCloud className="w-8 h-8" />
+          <div className="w-12 h-12 rounded-xl bg-[#162033] border border-slate-700/80 flex items-center justify-center text-slate-300 mb-3 shadow-inner">
+            <Camera className="w-5 h-5 text-orange-400" />
           </div>
 
-          <h3 className="text-base font-semibold text-slate-100 mb-1">
-            Upload Inspection Imagery
+          <h3 className="text-sm font-semibold text-slate-100 mb-1">
+            Stage Inspection Image
           </h3>
-          <p className="text-xs text-slate-400 max-w-sm mb-4">
-            Drag and drop your inspection photograph here, or browse your local file system.
+          <p className="text-[11px] text-slate-400 max-w-xs mb-3">
+            Drop your JPG, PNG, or WebP site photograph here, or browse local disk.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] text-slate-400 font-medium">
-            <span className="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700">JPG</span>
-            <span className="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700">PNG</span>
-            <span className="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700">WebP</span>
+          <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono">
+            <span className="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">JPG</span>
+            <span className="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">PNG</span>
+            <span className="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">WebP</span>
             <span className="text-slate-400">• Max 15 MB</span>
           </div>
         </div>
       ) : (
         /* Image Preview Box */
-        <div className="relative rounded-2xl overflow-hidden border border-slate-700 bg-slate-950 flex flex-col">
+        <div className="relative rounded-xl overflow-hidden border border-slate-700/80 bg-[#070A12] flex flex-col">
           {/* Top Bar with File Details */}
-          <div className="px-4 py-2.5 bg-[#172033] border-b border-slate-800 flex items-center justify-between">
+          <div className="px-3 py-2 bg-[#0E1422] border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-2 truncate">
-              <FileText className="w-4 h-4 text-orange-400 shrink-0" />
-              <span className="text-xs font-semibold text-slate-200 truncate">
+              <FileText className="w-3.5 h-3.5 text-orange-400 shrink-0" />
+              <span className="text-xs font-semibold text-slate-200 truncate font-mono">
                 {selectedFile?.name || 'Inspection Image'}
               </span>
               {selectedFile?.size > 0 && (
@@ -107,11 +107,11 @@ export const ImageUploader = ({
               )}
             </div>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1">
               <button
                 onClick={() => fileInputRef.current?.click()}
                 disabled={disabled}
-                className="px-2 py-1 rounded-lg text-[11px] font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
+                className="px-2 py-1 rounded text-[11px] font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
                 title="Replace image"
               >
                 <RefreshCw className="w-3 h-3" />
@@ -121,10 +121,10 @@ export const ImageUploader = ({
               <button
                 onClick={onClear}
                 disabled={disabled}
-                className="p-1 rounded-lg text-slate-400 hover:text-red-400 hover:bg-slate-800 transition-colors cursor-pointer"
+                className="p-1 rounded text-slate-400 hover:text-red-400 hover:bg-slate-800 transition-colors cursor-pointer"
                 title="Remove image"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
@@ -139,18 +139,18 @@ export const ImageUploader = ({
           />
 
           {/* Preview Image Frame */}
-          <div className="relative flex items-center justify-center p-4 bg-slate-950 min-h-[280px] max-h-[460px] overflow-hidden">
+          <div className="relative flex items-center justify-center p-3 bg-[#070A12] min-h-[240px] max-h-[380px] overflow-hidden">
             <img
               src={previewUrl}
               alt="Inspection Preview"
-              className="max-h-[420px] w-auto object-contain rounded-lg shadow-lg"
+              className="max-h-[350px] w-auto object-contain rounded border border-slate-800 shadow-md"
             />
           </div>
 
           {/* Dimensions Footer */}
           {dimensions && dimensions.width > 0 && (
-            <div className="px-4 py-2 bg-[#111827] border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-              <span>Resolution: {dimensions.width} × {dimensions.height} px</span>
+            <div className="px-3 py-1.5 bg-[#0A0F1B] border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+              <span>{dimensions.width} × {dimensions.height} px</span>
               <span>Aspect: {dimensions.aspectRatio}</span>
             </div>
           )}
@@ -159,19 +159,19 @@ export const ImageUploader = ({
 
       {/* Error message */}
       {error && (
-        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
-          <span>{error}</span>
+        <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs">
+          {error}
         </div>
       )}
 
-      {/* Instant Test Sample Images Bar */}
-      <div className="rounded-xl p-3.5 bg-[#172033]/60 border border-slate-800">
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-orange-400" />
-            Instant Inspection Samples
+      {/* 1-Click Instant Inspection Presets */}
+      <div className="rounded-xl p-3 bg-[#0E1422] border border-slate-800">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[11px] font-semibold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider">
+            <Sparkles className="w-3 h-3 text-orange-400" />
+            Inspection Presets
           </span>
-          <span className="text-[11px] text-slate-400">1-click test load</span>
+          <span className="text-[10px] text-slate-400">1-click test load</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -180,9 +180,9 @@ export const ImageUploader = ({
               key={sample.id}
               onClick={() => onSelectSample(sample)}
               disabled={disabled}
-              className="flex items-center gap-2.5 p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800/90 border border-slate-800 hover:border-orange-500/40 text-left transition-all cursor-pointer group disabled:opacity-50"
+              className="flex items-center gap-2 p-1.5 rounded-lg bg-[#141C2E] hover:bg-[#1A243B] border border-slate-700/60 hover:border-orange-500/40 text-left transition-all cursor-pointer group disabled:opacity-40"
             >
-              <div className="w-10 h-10 rounded-md bg-slate-800 border border-slate-700 overflow-hidden shrink-0 flex items-center justify-center">
+              <div className="w-8 h-8 rounded bg-slate-900 border border-slate-800 overflow-hidden shrink-0 flex items-center justify-center">
                 <img
                   src={sample.dataUrl}
                   alt={sample.title}
@@ -190,10 +190,10 @@ export const ImageUploader = ({
                 />
               </div>
               <div className="overflow-hidden">
-                <p className="text-xs font-medium text-slate-200 truncate group-hover:text-orange-400 transition-colors">
-                  {sample.expectedClass}
+                <p className="text-[11px] font-semibold text-slate-200 truncate group-hover:text-orange-400 transition-colors">
+                  {sample.expectedClass.split(' ')[0]}
                 </p>
-                <p className="text-[10px] text-slate-400 truncate">
+                <p className="text-[9px] text-slate-400 font-mono truncate">
                   {sample.tags[0]}
                 </p>
               </div>

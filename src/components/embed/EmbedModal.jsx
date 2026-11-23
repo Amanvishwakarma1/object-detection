@@ -46,20 +46,20 @@ export const EmbedModal = ({ isOpen, onClose }) => {
     >
       <div className="space-y-6">
         {/* Direct Link Section */}
-        <div className="p-4 rounded-xl bg-[#172033]/80 border border-slate-800 space-y-2">
+        <div className="p-3.5 rounded-lg bg-[#0E1422] border border-slate-800 space-y-2">
           <label className="text-xs font-semibold text-slate-300 flex items-center justify-between">
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 text-[11px]">
               <Share2 className="w-3.5 h-3.5 text-orange-400" />
               Public Application URL
             </span>
-            <span className="text-[11px] text-slate-400 font-normal">Independent SaaS link</span>
+            <span className="text-[10px] text-slate-400 font-mono">Independent SaaS link</span>
           </label>
           <div className="flex items-center gap-2">
             <input
               type="text"
               readOnly
               value={shareUrl}
-              className="flex-1 bg-slate-900 border border-slate-700/80 rounded-lg px-3 py-2 text-xs font-mono text-slate-300 select-all focus:outline-none"
+              className="flex-1 bg-[#0A0F1B] border border-slate-700/80 rounded-lg px-3 py-1.5 text-xs font-mono text-slate-300 select-all focus:outline-none"
             />
             <Button
               variant={copiedLink ? 'success' : 'primary'}
@@ -67,7 +67,7 @@ export const EmbedModal = ({ isOpen, onClose }) => {
               icon={copiedLink ? Check : Copy}
               onClick={handleCopyLink}
             >
-              {copiedLink ? 'Copied!' : 'Copy Link'}
+              {copiedLink ? 'Copied' : 'Copy Link'}
             </Button>
           </div>
         </div>
@@ -77,9 +77,9 @@ export const EmbedModal = ({ isOpen, onClose }) => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setViewMode('snippet')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer ${
                 viewMode === 'snippet'
-                  ? 'bg-orange-500/15 text-orange-400 border border-orange-500/30'
+                  ? 'bg-[#1E293B] text-white font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -88,26 +88,26 @@ export const EmbedModal = ({ isOpen, onClose }) => {
             </button>
             <button
               onClick={() => setViewMode('preview')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer ${
                 viewMode === 'preview'
-                  ? 'bg-orange-500/15 text-orange-400 border border-orange-500/30'
+                  ? 'bg-[#1E293B] text-white font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <Monitor className="w-3.5 h-3.5 inline mr-1.5" />
-              Live Embed Preview
+              Live Preview
             </button>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-400">
+          <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
             <span>Height:</span>
             <select
               value={embedHeight}
               onChange={(e) => setEmbedHeight(e.target.value)}
-              className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 text-xs focus:outline-none"
+              className="bg-[#0A0F1B] border border-slate-700 rounded px-2 py-1 text-slate-200 text-xs focus:outline-none"
             >
               <option value="600">600 px</option>
-              <option value="750">750 px (Recommended)</option>
+              <option value="750">750 px (Default)</option>
               <option value="900">900 px</option>
             </select>
           </div>

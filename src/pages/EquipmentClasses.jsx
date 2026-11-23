@@ -2,17 +2,15 @@ import React, { useState, useMemo } from 'react';
 import {
   ShieldAlert,
   Search,
-  Filter,
   CheckCircle2,
   AlertTriangle,
-  Info,
   Flame,
   HardHat,
   Briefcase
 } from 'lucide-react';
 import { EquipmentCard } from '../components/equipment/EquipmentCard';
 import { EquipmentModal } from '../components/equipment/EquipmentModal';
-import { DETECTION_CLASSES, CATEGORY_GROUPS } from '../data/detectionClasses';
+import { DETECTION_CLASSES } from '../data/detectionClasses';
 
 export const EquipmentClasses = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -32,66 +30,66 @@ export const EquipmentClasses = () => {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-2xl bg-[#172033] border border-slate-800">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 rounded-xl enterprise-card">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center shrink-0">
-            <ShieldAlert className="w-5 h-5" />
+          <div className="w-8 h-8 rounded-lg bg-[#162033] border border-slate-700/80 text-orange-400 flex items-center justify-center shrink-0">
+            <ShieldAlert className="w-4 h-4" />
           </div>
           <div>
-            <h2 className="text-base font-bold text-slate-100">
+            <h2 className="text-sm font-bold text-slate-100">
               Verified Equipment Categories
             </h2>
-            <p className="text-xs text-slate-400">
-              Official catalog of the 7 fire protection, safety PPE, and workplace equipment classes
+            <p className="text-[11px] text-slate-400">
+              Standardized catalog of 7 life-safety, PPE, and workplace apparatus classes
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 text-xs">
-          <span className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1">
-            <CheckCircle2 className="w-3.5 h-3.5" />
-            7 Classes Monitored
+          <span className="px-2 py-0.5 rounded bg-[#141C2E] border border-slate-700/80 text-emerald-400 font-mono text-[11px] flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3" />
+            7 Standards Monitored
           </span>
         </div>
       </div>
 
-      {/* Regulatory Disclaimer Notice */}
-      <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-slate-300 space-y-1">
-        <div className="flex items-center gap-2 text-amber-400 font-semibold">
-          <AlertTriangle className="w-4 h-4 shrink-0" />
-          <span>Operational Safety Notice</span>
+      {/* Regulatory Notice */}
+      <div className="p-3.5 rounded-xl bg-[#0E1422] border border-slate-800 text-xs text-slate-300 space-y-1">
+        <div className="flex items-center gap-1.5 text-slate-300 font-medium text-[11px]">
+          <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+          <span>Operational Safety Protocol</span>
         </div>
         <p className="text-slate-400 text-[11px] leading-relaxed">
-          FireGuard AI detects the visual presence and spatial boundaries of fire safety and workplace gear. Detection of an item does NOT certify that its operational pressure, maintenance tag, water supply, battery charge, or regulatory compliance meets statutory NFPA, OSHA, or IBC guidelines. Regular on-site physical inspections remain mandatory.
+          FireGuard AI detects visual equipment presence and orientation. Automated detection does not certify cylinder hydrostatic tests, chemical charge pressure, or statutory NFPA/OSHA inspection compliance.
         </p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-4 rounded-xl bg-[#172033]/80 border border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="p-3 rounded-xl enterprise-card flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         {/* Category Tabs */}
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex flex-wrap items-center gap-1">
           <button
             onClick={() => setSelectedCategory('ALL')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
               selectedCategory === 'ALL'
-                ? 'bg-orange-500 text-white shadow-sm'
-                : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                ? 'bg-[#1E293B] text-white font-semibold'
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            All Categories (7)
+            All (7)
           </button>
 
           <button
             onClick={() => setSelectedCategory('FIRE_PROTECTION')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
               selectedCategory === 'FIRE_PROTECTION'
-                ? 'bg-red-500 text-white shadow-sm'
-                : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                ? 'bg-[#1E293B] text-white font-semibold'
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Flame className="w-3.5 h-3.5 text-red-400" />
+            <Flame className="w-3 h-3 text-red-400" />
             <span>Fire Protection (5)</span>
           </button>
 
@@ -99,42 +97,42 @@ export const EquipmentClasses = () => {
             onClick={() => setSelectedCategory('WORKPLACE_SAFETY')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
               selectedCategory === 'WORKPLACE_SAFETY'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                ? 'bg-[#1E293B] text-white font-semibold'
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <HardHat className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Safety PPE (1)</span>
+            <HardHat className="w-3 h-3 text-emerald-400" />
+            <span>PPE (1)</span>
           </button>
 
           <button
             onClick={() => setSelectedCategory('WORKPLACE_EQUIPMENT')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
               selectedCategory === 'WORKPLACE_EQUIPMENT'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                ? 'bg-[#1E293B] text-white font-semibold'
+                : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Briefcase className="w-3.5 h-3.5 text-blue-400" />
+            <Briefcase className="w-3 h-3 text-blue-400" />
             <span>Equipment (1)</span>
           </button>
         </div>
 
         {/* Search */}
-        <div className="relative sm:w-64">
-          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+        <div className="relative sm:w-60">
+          <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search classes or standards..."
+            placeholder="Search standards..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-9 pr-4 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-orange-500"
+            className="w-full bg-[#0A0F1B] border border-slate-700/80 rounded-lg pl-8.5 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-orange-500"
           />
         </div>
       </div>
 
       {/* Equipment Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredClasses.map((item) => (
           <EquipmentCard
             key={item.id}

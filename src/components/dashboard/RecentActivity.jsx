@@ -3,10 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   Clock,
   CheckCircle2,
-  AlertCircle,
   FileImage,
   ArrowRight,
-  ExternalLink,
   ScanEye
 } from 'lucide-react';
 import { Button } from '../common/Button';
@@ -18,15 +16,15 @@ export const RecentActivity = ({ records = [], onSelectRecord }) => {
 
   if (!records || records.length === 0) {
     return (
-      <div className="p-5 rounded-2xl bg-[#172033] border border-slate-800/80 shadow-lg">
-        <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider mb-4">
-          Recent Visual Inspections
+      <div className="p-4.5 rounded-xl enterprise-card">
+        <h3 className="text-xs font-semibold text-slate-200 uppercase tracking-wider mb-3">
+          Inspection Activity
         </h3>
         <EmptyState
           icon={ScanEye}
-          title="No Inspection Activity Yet"
-          description="Uploaded images and model predictions will appear here in your local audit stream."
-          actionLabel="Launch Detection Studio"
+          title="No Inspection Logs"
+          description="Inference logs and visual bounding box records will appear in this audit feed."
+          actionLabel="Launch Studio"
           onAction={() => navigate('/studio')}
         />
       </div>
@@ -36,14 +34,14 @@ export const RecentActivity = ({ records = [], onSelectRecord }) => {
   const recentList = records.slice(0, 5);
 
   return (
-    <div className="p-5 rounded-2xl bg-[#172033] border border-slate-800/80 shadow-lg flex flex-col">
-      <div className="flex items-center justify-between mb-4">
+    <div className="p-4.5 rounded-xl enterprise-card flex flex-col justify-between">
+      <div className="flex items-center justify-between mb-3">
         <div>
-          <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">
-            Recent Visual Inspections
+          <h3 className="text-xs font-semibold text-slate-200 uppercase tracking-wider">
+            Recent Inspections
           </h3>
-          <p className="text-xs text-slate-400">
-            Latest inference jobs processed through the active model
+          <p className="text-[11px] text-slate-400 mt-0.5">
+            Verified equipment scans logged locally
           </p>
         </div>
         <Button
@@ -52,55 +50,50 @@ export const RecentActivity = ({ records = [], onSelectRecord }) => {
           icon={ArrowRight}
           iconPosition="right"
           onClick={() => navigate('/history')}
-          className="text-xs text-orange-400 hover:text-orange-300"
+          className="text-xs text-slate-300 hover:text-white"
         >
           View All ({records.length})
         </Button>
       </div>
 
-      <div className="divide-y divide-slate-800/80 overflow-hidden">
+      <div className="divide-y divide-slate-800/80">
         {recentList.map((rec) => (
           <div
             key={rec.id}
             onClick={() => onSelectRecord ? onSelectRecord(rec) : navigate('/history')}
-            className="py-3 px-2 flex items-center justify-between hover:bg-slate-800/40 rounded-xl transition-colors cursor-pointer group"
+            className="py-2.5 px-2 flex items-center justify-between hover:bg-[#162033]/60 rounded-lg transition-colors cursor-pointer group"
           >
-            <div className="flex items-center gap-3 truncate">
+            <div className="flex items-center gap-2.5 truncate">
               {/* Thumbnail */}
-              <div className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 overflow-hidden shrink-0 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-md bg-[#0B101D] border border-slate-700/80 overflow-hidden shrink-0 flex items-center justify-center">
                 {rec.processedImage || rec.originalImage ? (
                   <img
                     src={rec.processedImage || rec.originalImage}
                     alt={rec.filename}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                   />
                 ) : (
-                  <FileImage className="w-5 h-5 text-slate-500" />
+                  <FileImage className="w-4 h-4 text-slate-500" />
                 )}
               </div>
 
               <div className="overflow-hidden">
-                <p className="text-xs font-semibold text-slate-200 truncate group-hover:text-orange-400 transition-colors">
+                <p className="text-xs font-medium text-slate-200 truncate group-hover:text-orange-400 transition-colors">
                   {rec.filename || 'Inspection Record'}
                 </p>
-                <div className="flex items-center gap-2 text-[11px] text-slate-400 mt-0.5">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-slate-500" />
-                    {formatRelativeTime(rec.timestamp || rec.savedAt)}
-                  </span>
+                <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono mt-0.5">
+                  <span>{formatRelativeTime(rec.timestamp || rec.savedAt)}</span>
                   {rec.processingTimeMs && (
-                    <span className="font-mono text-slate-400">
-                      • {rec.processingTimeMs}ms
-                    </span>
+                    <span>• {rec.processingTimeMs}ms</span>
                   )}
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div>
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <CheckCircle2 className="w-3 h-3" />
-                Completed
+                <CheckCircle2 className="w-2.5 h-2.5" />
+                Verified
               </span>
             </div>
           </div>

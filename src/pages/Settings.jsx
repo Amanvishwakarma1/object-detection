@@ -31,92 +31,91 @@ export const Settings = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-4 max-w-4xl">
       {/* Header */}
-      <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#172033] border border-slate-800">
-        <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center shrink-0">
-          <SettingsIcon className="w-5 h-5" />
+      <div className="flex items-center gap-3 p-3.5 rounded-xl enterprise-card">
+        <div className="w-8 h-8 rounded-lg bg-[#162033] border border-slate-700/80 text-orange-400 flex items-center justify-center shrink-0">
+          <SettingsIcon className="w-4 h-4" />
         </div>
         <div>
-          <h2 className="text-base font-bold text-slate-100">
-            Platform Configuration & Privacy
+          <h2 className="text-sm font-bold text-slate-100">
+            System Settings & Data Retention
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-[11px] text-slate-400">
             Manage local storage retention, inspection viewer preferences, and security settings
           </p>
         </div>
       </div>
 
       {/* Viewer Preferences */}
-      <div className="p-5 rounded-2xl bg-[#172033] border border-slate-800 space-y-4">
-        <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+      <div className="p-4 rounded-xl enterprise-card space-y-3.5">
+        <div className="flex items-center gap-2 border-b border-slate-800 pb-2.5">
           <Eye className="w-4 h-4 text-orange-400" />
-          <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">
-            Detection Studio Viewer Preferences
+          <h3 className="text-xs font-semibold text-slate-200 uppercase tracking-wider">
+            Studio Viewport Preferences
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
           <div>
-            <label className="font-semibold text-slate-200 block mb-1">
-              Default Inspection Presentation
+            <label className="font-semibold text-slate-200 block mb-1 text-[11px]">
+              Default Presentation Mode
             </label>
-            <p className="text-slate-400 text-[11px] mb-2.5">
-              Choose the primary view mode displayed when inference completes in the Studio.
+            <p className="text-slate-400 text-[10px] mb-2">
+              Primary viewport presentation displayed upon inference completion.
             </p>
             <select
               value={defaultViewMode}
               onChange={(e) => setDefaultViewMode(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 text-xs focus:outline-none focus:border-orange-500"
+              className="w-full bg-[#0A0F1B] border border-slate-700/80 rounded-lg px-2.5 py-1.5 text-slate-200 text-xs focus:outline-none focus:border-orange-500 font-mono"
             >
-              <option value="annotated">Annotated Image (Default)</option>
-              <option value="side-by-side">Side-by-Side Comparison</option>
+              <option value="annotated">Annotated Output (Default)</option>
+              <option value="side-by-side">Side-by-Side Dual View</option>
               <option value="slider">Interactive Split Slider</option>
               <option value="original">Original Image Only</option>
             </select>
           </div>
 
-          {/* Model Confidence Slider (Transparently Marked Unavailable) */}
-          <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2 opacity-80">
+          <div className="p-3 rounded-lg bg-[#0E1422] border border-slate-800 space-y-1">
             <div className="flex items-center justify-between">
-              <span className="font-semibold text-slate-300">Confidence Threshold</span>
-              <span className="text-[10px] text-amber-400 font-mono bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                Fixed by Model Backend
+              <span className="font-semibold text-slate-300 text-[11px]">Confidence Parameter</span>
+              <span className="text-[9px] text-slate-400 font-mono bg-slate-900 px-1.5 py-0.2 rounded border border-slate-800">
+                Fixed by Model
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              The existing Hugging Face backend exposes a fixed detection threshold in its compiled YOLO script (<code className="text-slate-300 font-mono">results[0].plot()</code>). In accordance with system guidelines, custom confidence threshold adjustment is intentionally disabled to avoid simulating non-functional controls.
+            <p className="text-[10px] text-slate-400 leading-relaxed">
+              The remote YOLO model script sets detection thresholds during graph compilation. Manual threshold adjustment is disabled to prevent simulated controls.
             </p>
           </div>
         </div>
       </div>
 
       {/* Local Storage & Cache Management */}
-      <div className="p-5 rounded-2xl bg-[#172033] border border-slate-800 space-y-4">
-        <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+      <div className="p-4 rounded-xl enterprise-card space-y-3.5">
+        <div className="flex items-center gap-2 border-b border-slate-800 pb-2.5">
           <HardDrive className="w-4 h-4 text-orange-400" />
-          <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">
+          <h3 className="text-xs font-semibold text-slate-200 uppercase tracking-wider">
             Browser Storage & Data Archive
           </h3>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 rounded-lg bg-[#0E1422] border border-slate-800">
           <div>
-            <span className="text-xs font-semibold text-slate-200 block">
+            <span className="text-xs font-semibold text-slate-200 block font-mono">
               IndexedDB Storage Engine
             </span>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Currently holding <strong>{stats.recordCount}</strong> inspection records ({formatFileSize(stats.estimatedBytes)}).
+            <p className="text-[11px] text-slate-400 mt-0.5">
+              Holding <strong>{stats.recordCount}</strong> inspection records ({formatFileSize(stats.estimatedBytes)}).
             </p>
           </div>
 
           <div className="flex items-center gap-2">
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
               icon={Download}
               onClick={handleExportJSON}
-              className="text-xs border-slate-700"
+              className="text-xs"
             >
               Export JSON
             </Button>
@@ -134,31 +133,31 @@ export const Settings = () => {
         </div>
 
         {clearedNotice && (
-          <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4" />
+          <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
+            <CheckCircle2 className="w-3.5 h-3.5" />
             <span>Local detection history successfully cleared.</span>
           </div>
         )}
       </div>
 
       {/* Security & Privacy Statement */}
-      <div className="p-5 rounded-2xl bg-[#172033] border border-slate-800 space-y-3">
-        <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+      <div className="p-4 rounded-xl enterprise-card space-y-2.5">
+        <div className="flex items-center gap-2 border-b border-slate-800 pb-2.5">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">
-            Security, Privacy & Data Handling
+          <h3 className="text-xs font-semibold text-slate-200 uppercase tracking-wider">
+            Security & Data Protection
           </h3>
         </div>
 
-        <ul className="space-y-2 text-xs text-slate-400 leading-relaxed list-disc pl-4">
+        <ul className="space-y-1.5 text-[11px] text-slate-400 leading-relaxed list-disc pl-4">
           <li>
-            <strong className="text-slate-200">Zero Private Credentials:</strong> FireGuard AI does not require, embed, or expose private API tokens. All inference requests are executed over public, sandboxed HTTPS endpoints provided by Hugging Face Spaces.
+            <strong className="text-slate-200">No Private API Keys:</strong> All inference requests route publicly to the Hugging Face Space endpoint.
           </li>
           <li>
-            <strong className="text-slate-200">Local Data Sovereignty:</strong> Uploaded inspection images and history records are preserved inside your local browser's IndexedDB storage. No user photographs are transmitted to third-party databases, tracking pixels, or advertisement networks.
+            <strong className="text-slate-200">Client-Side Sovereignty:</strong> Staged inspection imagery and history records are preserved inside your local browser's IndexedDB.
           </li>
           <li>
-            <strong className="text-slate-200">Inference Scope:</strong> Photographs submitted in the Studio are sent directly to the Hugging Face Space (<code className="text-slate-300 font-mono">aman9832/object-detection</code>) solely to compute object detection bounding boxes.
+            <strong className="text-slate-200">Inference Scope:</strong> Imagery is processed solely by the remote YOLO model for object detection.
           </li>
         </ul>
       </div>
